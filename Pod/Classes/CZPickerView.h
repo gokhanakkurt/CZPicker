@@ -116,4 +116,13 @@
 /** picker's animation duration for showing and dismissing*/
 @property CGFloat animationDuration;
 
+/** tint color for tableview, also checkmark color */
+@property (nonatomic, strong) UIColor *checkmarkColor;
+
+@property (nonatomic, strong) UIFont *titleFont;
+
+@property (nonatomic, strong) UIFont *bodyFont;
+
+@property (nonatomic, strong) UIFont *buttonFont;
+
 @end

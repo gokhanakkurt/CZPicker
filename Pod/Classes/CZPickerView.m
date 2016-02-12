@@ -214,7 +214,7 @@ typedef void (^CZDismissCompletionCallback)(void);
     [cancelButton setTitle:self.cancelButtonTitle forState:UIControlStateNormal];
     [cancelButton setTitleColor: self.cancelButtonNormalColor forState:UIControlStateNormal];
     [cancelButton setTitleColor:self.cancelButtonHighlightedColor forState:UIControlStateHighlighted];
-    cancelButton.titleLabel.font = [UIFont boldSystemFontOfSize:16];
+    cancelButton.titleLabel.font = self.titleFont;
     cancelButton.backgroundColor = self.cancelButtonBackgroundColor;
     [cancelButton addTarget:self action:@selector(cancelButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:cancelButton];
@@ -223,7 +223,7 @@ typedef void (^CZDismissCompletionCallback)(void);
     [confirmButton setTitle:self.confirmButtonTitle forState:UIControlStateNormal];
     [confirmButton setTitleColor:self.confirmButtonNormalColor forState:UIControlStateNormal];
     [confirmButton setTitleColor:self.confirmButtonHighlightedColor forState:UIControlStateHighlighted];
-    confirmButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    confirmButton.titleLabel.font = self.buttonFont;
     confirmButton.backgroundColor = self.confirmButtonBackgroundColor;
     [confirmButton addTarget:self action:@selector(confirmButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [view addSubview:confirmButton];
@@ -235,7 +235,7 @@ typedef void (^CZDismissCompletionCallback)(void);
     view.backgroundColor = self.headerBackgroundColor;
     NSDictionary *dict = @{
                            NSForegroundColorAttributeName: self.headerTitleColor,
-                           NSFontAttributeName: [UIFont systemFontOfSize:18.0]
+                           NSFontAttributeName: self.titleFont
                            };
     NSAttributedString *at = [[NSAttributedString alloc] initWithString:self.headerTitle attributes:dict];
     UILabel *label = [[UILabel alloc] initWithFrame:view.frame];
@@ -319,6 +319,12 @@ typedef void (^CZDismissCompletionCallback)(void);
     } else if([self.dataSource respondsToSelector:@selector(czpickerView:titleForRow:)]){
         cell.textLabel.text = [self.dataSource czpickerView:self titleForRow:indexPath.row];
     }
+    
+    if(self.checkmarkColor){
+        cell.tintColor = self.checkmarkColor;
+    }
+
+    cell.textLabel.font = self.bodyFont;
     return cell;
 }
 
